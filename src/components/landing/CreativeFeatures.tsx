@@ -30,13 +30,13 @@ const CreativeFeatures = () => {
   ];
 
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="relative group p-12 bg-gradient-to-b from-transparent to-black/40">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#ffffff] mb-4">
             Why Choose Bubbles?
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-[#ffffff] max-w-2xl mx-auto text-lg">
             Experience the perfect blend of taste and service
           </p>
         </div>
@@ -45,7 +45,7 @@ const CreativeFeatures = () => {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="group relative rounded-xl p-6 bg-gradient-to-br border border-white/10 hover:border-bubbles-pink/50 transition-all duration-300"
+              className="group relative rounded-xl p-6 bg-white border border-gray-100 hover:border-bubbles-pink/50 transition-all duration-300 hover:shadow-lg"
             >
               <div
                 className={`absolute inset-0 rounded-xl bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
@@ -53,10 +53,10 @@ const CreativeFeatures = () => {
 
               <div className="relative z-10">
                 <div className="mb-4 text-bubbles-pink">{feature.icon}</div>
-                <h3 className="text-xl font-semibold text-white mb-2">
+                <h3 className="text-xl font-semibold text-[#1A1F2C] mb-2">
                   {feature.title}
                 </h3>
-                <p className="text-gray-400 mb-4">{feature.description}</p>
+                <p className="text-gray-700 mb-4">{feature.description}</p>
                 <div className="flex items-center text-bubbles-pink font-medium group-hover:translate-x-2 transition-transform duration-300">
                   Learn more <ArrowRight className="w-4 h-4 ml-2" />
                 </div>

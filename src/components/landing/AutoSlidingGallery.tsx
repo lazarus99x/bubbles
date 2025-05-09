@@ -16,19 +16,19 @@ const AutoSlidingGallery: React.FC<AutoSlidingGalleryProps> = ({
   const images: GalleryImage[] = [
     {
       src: "/images/slider.jpg", // Replace with your actual image filenames
-      alt: "Cyberpunk cityscape",
+      alt: "Delicious Meals",
     },
     {
       src: "/images/slider2.jpg",
-      alt: "Neon-lit alleyway",
+      alt: "Jollof at it's Best",
     },
     {
       src: "/images/slider3.jpg",
-      alt: "Futuristic hacker den",
+      alt: "Affordable Meals",
     },
     {
       src: "/images/slider4.jpg",
-      alt: "Futuristic hacker den",
+      alt: "Original Naija Dishes",
     },
   ];
 

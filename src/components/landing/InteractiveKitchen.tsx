@@ -6,20 +6,23 @@ const InteractiveKitchen = () => {
     {
       title: "Fresh Ingredients",
       description: "We source the finest ingredients daily",
-      gifUrl: "/placeholder.svg", // Using placeholder until cooking GIFs are provided
-      color: "from-pink-500/20 to-purple-500/20",
+      gifUrl:
+        "https://images.pexels.com/photos/1192031/pexels-photo-1192031.jpeg?cs=srgb&dl=pexels-mike-468229-1192031.jpg&fm=jpg",
+      color: "from-pink-500/40 to-purple-500/40", // Increased opacity for better contrast
     },
     {
       title: "Expert Preparation",
       description: "Our chefs bring years of experience",
-      gifUrl: "/placeholder.svg",
-      color: "from-purple-500/20 to-blue-500/20",
+      gifUrl:
+        "https://www.bellanaija.com/wp-content/uploads/2015/06/dreamstime_xl_32896684.jpg",
+      color: "from-purple-500/40 to-blue-500/40",
     },
     {
       title: "Perfect Plating",
-      description: "Every dish is a work of art",
-      gifUrl: "/placeholder.svg",
-      color: "from-blue-500/20 to-green-500/20",
+      description: "Every dish is a work of art mixed with our culture",
+      gifUrl:
+        "https://trueafricanart.com/cdn/shop/products/peddlers.jpg?v=1610881880",
+      color: "from-blue-500/40 to-green-500/40",
     },
   ];
 
@@ -48,7 +51,7 @@ const InteractiveKitchen = () => {
   };
 
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="group relative p-6 rounded-xl bg-[#1A1F2C]/50 backdrop-blur-sm ">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -57,10 +60,10 @@ const InteractiveKitchen = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
             From Kitchen to Table
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-gray-200 max-w-2xl mx-auto text-lg">
             Watch our culinary magic unfold before your eyes
           </p>
         </motion.div>
@@ -79,10 +82,10 @@ const InteractiveKitchen = () => {
               className="relative group"
             >
               <div
-                className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl`}
+                className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-0 transition-opacity duration-300 rounded-xl`}
               />
-              <div className="relative bg-[#1A1F2C]/50 backdrop-blur-sm border border-white/10 rounded-xl p-6 transition-all duration-300 hover:-translate-y-2">
-                <div className="aspect-video rounded-lg overflow-hidden mb-6 bg-black/20">
+              <div className="relative bg-black/60 backdrop-blur-sm border border-white/20 rounded-xl p-6 transition-all duration-300 hover:-translate-y-2 shadow-lg">
+                <div className="aspect-video rounded-lg overflow-hidden mb-6 bg-black/40">
                   <motion.img
                     src={step.gifUrl}
                     alt={step.title}
@@ -92,10 +95,12 @@ const InteractiveKitchen = () => {
                     transition={{ duration: 0.3 }}
                   />
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-2">
+                <h3 className="text-2xl font-semibold text-white mb-3 drop-shadow-md">
                   {step.title}
                 </h3>
-                <p className="text-gray-400">{step.description}</p>
+                <p className="text-gray-200 text-lg leading-relaxed">
+                  {step.description}
+                </p>
               </div>
             </motion.div>
           ))}

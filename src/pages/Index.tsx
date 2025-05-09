@@ -50,19 +50,10 @@ const Index: React.FC = () => {
         </section>
 
         <section className="bg-[#1A1F2C]/30 backdrop-blur-sm">
-          <InteractiveJourney />
-        </section>
-
-        <section className="bg-transparent">
-          <TasteOfNigeria />
-        </section>
-
-        <section className="bg-[#1A1F2C]/30 backdrop-blur-sm">
           <CustomerFavorites />
         </section>
-
         <section className="bg-transparent">
-          <ExploreCulture />
+          <TasteOfNigeria />
         </section>
 
         <section className="bg-[#1A1F2C]/30 backdrop-blur-sm">
