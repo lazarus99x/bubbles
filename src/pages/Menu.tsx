@@ -42,12 +42,13 @@ const Menu: React.FC = () => {
 
   useEffect(() => {
     if (dishes.length > 0) {
-      const uniqueCategories = Array.from(
-        new Set(dishes.map((dish) => dish.category))
-      );
+      const uniqueCategories = [
+        "All",
+        ...Array.from(new Set(dishes.map((dish) => dish.category))),
+      ];
       setCategories(uniqueCategories);
-      if (!activeCategory && uniqueCategories.length > 0) {
-        setActiveCategory(uniqueCategories[0]);
+      if (!activeCategory) {
+        setActiveCategory("All");
       }
     }
   }, [dishes, activeCategory]);
@@ -100,7 +101,11 @@ const Menu: React.FC = () => {
               <MenuCategory
                 name={activeCategory}
                 items={dishes
-                  .filter((dish) => dish.category === activeCategory)
+                  .filter((dish) =>
+                    activeCategory === "All"
+                      ? true
+                      : dish.category === activeCategory
+                  )
                   .map((dish) => ({
                     id: dish.id,
                     name: dish.name,

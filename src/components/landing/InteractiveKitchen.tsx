@@ -51,7 +51,7 @@ const InteractiveKitchen = () => {
   };
 
   return (
-    <section className="group relative p-6 rounded-xl bg-[#1A1F2C]/50 backdrop-blur-sm ">
+    <section className="group py-20 relative p-6 rounded-xl bg-[#1A1F2C]/50 backdrop-blur-sm ">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -104,22 +104,6 @@ const InteractiveKitchen = () => {
               </div>
             </motion.div>
           ))}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6, duration: 0.5 }}
-          className="text-center mt-12"
-        >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-bubbles-pink text-white px-8 py-3 rounded-full font-semibold hover:shadow-[0_0_15px_#FF6B9D] transition-shadow duration-300"
-          >
-            Explore Our Kitchen
-          </motion.button>
         </motion.div>
       </div>
     </section>

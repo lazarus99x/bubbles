@@ -3,6 +3,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import WhatsAppButton from "../WhatsAppButton";
 import { supabase } from "@/integrations/supabase/client";
 import { Dish } from "@/types/dish";
+import { motion } from "framer-motion";
+import Link from "next/link";
 
 const CustomerFavorites: React.FC = () => {
   const [favorites, setFavorites] = useState<Dish[]>([]);
@@ -92,6 +94,23 @@ const CustomerFavorites: React.FC = () => {
             </Card>
           ))}
         </div>
+        <a href="/menu">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+            className="text-center mt-12"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-bubbles-pink text-white px-8 py-3 rounded-full font-semibold hover:shadow-[0_0_15px_#FF6B9D] transition-shadow duration-300"
+            >
+              Explore Our Kitchen
+            </motion.button>
+          </motion.div>
+        </a>
       </div>
     </section>
   );

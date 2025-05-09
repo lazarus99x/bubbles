@@ -17,7 +17,7 @@ export default function FeaturedDishBanner({ dish }: FeaturedDishBannerProps) {
   const discount = ((dish.price - dish.discount_price) / dish.price) * 100;
 
   return (
-    <Card className="w-full overflow-hidden bg-gradient-to-r from-bubbles-pink/20 to-bubbles-white border-none">
+    <Card className="w-full overflow-hidden  bg-[#1A1F2C]/50 backdrop-blur-sm border-none">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="h-64 md:h-full">
           <img
@@ -34,14 +34,14 @@ export default function FeaturedDishBanner({ dish }: FeaturedDishBannerProps) {
           </CardHeader>
           <CardContent className="px-0">
             <h3 className="text-2xl font-semibold mb-2">{dish.name}</h3>
-            <p className="text-gray-600 mb-4">{dish.description}</p>
+            <p className="text-white mb-4">{dish.description}</p>
             <div className="mb-6">
               <div className="flex items-center gap-4">
                 <span className="text-2xl font-bold text-bubbles-pink">
                   {dish.currency}
                   {dish.discount_price.toLocaleString()}
                 </span>
-                <span className="text-lg line-through text-gray-400">
+                <span className="text-lg line-through text-white">
                   {dish.currency}
                   {dish.price.toLocaleString()}
                 </span>
