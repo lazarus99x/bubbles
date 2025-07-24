@@ -48,14 +48,7 @@ const App = () => {
                   </PrivateRoute>
                 }
               />
-              <Route
-                path="/admin"
-                element={
-                  <PrivateRoute adminOnly={true}>
-                    <Admin />
-                  </PrivateRoute>
-                }
-              />
+              <Route path="/admin" element={<Admin />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

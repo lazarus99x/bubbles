@@ -139,7 +139,26 @@ const Admin: React.FC = () => {
     }
   };
 
-  if (!user || !isAdmin) {
+  if (!user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-xl font-bold">Admin Login Required</h2>
+          <p className="mt-2">
+            Please log in with your admin credentials to access the admin panel.
+          </p>
+          <button
+            onClick={() => navigate("/admin-login")}
+            className="mt-4 px-4 py-2 bg-bubbles-pink text-white rounded-md hover:shadow-[0_0_15px_#FF6B9D] transition-all duration-300"
+          >
+            Admin Login
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAdmin) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
