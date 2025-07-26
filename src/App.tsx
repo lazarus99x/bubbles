@@ -19,6 +19,7 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import FloatingBubbles from "./components/FloatingBubbles";
 import { initializeStorage } from "./integrations/supabase/storage";
 
+// Force deployment update - 2025-07-26 15:30
 const queryClient = new QueryClient();
 
 const App = () => {
