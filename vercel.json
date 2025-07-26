@@ -1,5 +1,4 @@
 {
-  "_comment": "Force deployment update - 2025-07-26",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "vite",
