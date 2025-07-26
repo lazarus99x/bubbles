@@ -4,8 +4,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { useSiteSettings } from "@/contexts/useSiteSettings";
 
 const ContactSection: React.FC = () => {
+  const { settings } = useSiteSettings();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");

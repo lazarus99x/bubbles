@@ -1,5 +1,6 @@
 import React from "react";
 import { cn } from "@/lib/utils";
+import { useSiteSettings } from "@/contexts/useSiteSettings";
 
 interface WhatsAppButtonProps {
   text: string;
@@ -12,9 +13,14 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
   dishName,
   className = "",
 }) => {
+  const { settings } = useSiteSettings();
+  const whatsappNumber = settings.whatsapp_number || "+2348123456789";
+
   const handleClick = () => {
     const message = `Hi! I'd like to order ${dishName}.`;
-    const whatsappUrl = `https://wa.me/+2348123456789?text=${encodeURIComponent(message)}`;
+    // Remove any spaces and ensure the number is properly formatted
+    const cleanNumber = whatsappNumber.replace(/\s+/g, "");
+    const whatsappUrl = `https://wa.me/${cleanNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
   };
 

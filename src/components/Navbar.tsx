@@ -12,7 +12,7 @@ const Navbar: React.FC = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass px-6 py-4">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm px-6 py-4">
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/" className="flex items-center">
           <img
@@ -23,39 +23,50 @@ const Navbar: React.FC = () => {
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden md:flex items-center space-x-12">
           <Link
-            to="/menu"
-            className="text-bubbles-black hover:text-bubbles-pink transition-colors"
+            to="/menu/parfaits"
+            className="text-white hover:text-pink-500 transition-colors font-medium"
           >
-            Menu
+            Parfaits
           </Link>
           <Link
-            to="/our-story"
-            className="text-bubbles-black hover:text-bubbles-pink transition-colors"
+            to="/menu/drinks"
+            className="text-white hover:text-pink-500 transition-colors font-medium"
           >
-            Our Story
+            Drinks
           </Link>
-          <a
-            href="/#location"
-            className="text-bubbles-black hover:text-bubbles-pink transition-colors"
+          <Link
+            to="/menu/foods"
+            className="text-white hover:text-pink-500 transition-colors font-medium"
           >
-            Location
-          </a>
-          <a
-            href="/#contact"
-            className="text-bubbles-black hover:text-bubbles-pink transition-colors"
+            Foods
+          </Link>
+          <Link
+            to="/menu/cakes"
+            className="text-white hover:text-pink-500 transition-colors font-medium"
           >
-            Contact
-          </a>
+            Cakes
+          </Link>
 
+          <Link
+            to="/order"
+            className="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full font-medium transition-colors"
+          >
+            Place Order
+          </Link>
           <ProfileIcon />
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center gap-2">
-          <ProfileIcon />
-          <button className="text-bubbles-black" onClick={toggleMenu}>
+        <div className="md:hidden flex items-center gap-4">
+          <Link
+            to="/order"
+            className="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full font-medium transition-colors text-sm"
+          >
+            Place Order
+          </Link>
+          <button className="text-white" onClick={toggleMenu}>
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -63,36 +74,36 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden glass absolute top-16 left-0 right-0 p-4">
+        <div className="md:hidden bg-black/95 absolute top-16 left-0 right-0 p-4">
           <div className="flex flex-col space-y-4">
             <Link
-              to="/menu"
-              className="text-bubbles-black hover:text-bubbles-pink transition-colors"
+              to="/menu/parfaits"
+              className="text-white hover:text-pink-500 transition-colors"
               onClick={toggleMenu}
             >
-              Menu
+              Parfaits
             </Link>
             <Link
-              to="/our-story"
-              className="text-bubbles-black hover:text-bubbles-pink transition-colors"
+              to="/menu/drinks"
+              className="text-white hover:text-pink-500 transition-colors"
               onClick={toggleMenu}
             >
-              Our Story
+              Drinks
             </Link>
-            <a
-              href="/#location"
-              className="text-bubbles-black hover:text-bubbles-pink transition-colors"
+            <Link
+              to="/menu/foods"
+              className="text-white hover:text-pink-500 transition-colors"
               onClick={toggleMenu}
             >
-              Location
-            </a>
-            <a
-              href="/#contact"
-              className="text-bubbles-black hover:text-bubbles-pink transition-colors"
+              Foods
+            </Link>
+            <Link
+              to="/menu/cakes"
+              className="text-white hover:text-pink-500 transition-colors"
               onClick={toggleMenu}
             >
-              Contact
-            </a>
+              Cakes
+            </Link>
           </div>
         </div>
       )}

@@ -11,6 +11,7 @@ import CategoryManager from "@/components/admin/CategoryManager";
 import UserManager from "@/components/admin/UserManager";
 import MessageManager from "@/components/admin/MessageManager";
 import Dashboard from "@/components/admin/Dashboard";
+import DatabaseDebugger from "@/components/admin/DatabaseDebugger";
 
 const Admin: React.FC = () => {
   const [categories, setCategories] = useState<string[]>([]);
@@ -190,12 +191,13 @@ const Admin: React.FC = () => {
             onValueChange={setActiveTab}
             className="w-full"
           >
-            <TabsList className="mb-8 overflow-x-auto grid grid-cols-5">
+            <TabsList className="mb-8 overflow-x-auto grid grid-cols-6">
               <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
               <TabsTrigger value="menu">Menu Management</TabsTrigger>
               <TabsTrigger value="categories">Categories</TabsTrigger>
               <TabsTrigger value="users">Users</TabsTrigger>
               <TabsTrigger value="messages">Messages</TabsTrigger>
+              <TabsTrigger value="debug">Database Setup</TabsTrigger>
             </TabsList>
 
             <div className="glass p-6 rounded-lg shadow-lg">
@@ -221,6 +223,20 @@ const Admin: React.FC = () => {
 
               <TabsContent value="messages">
                 <MessageManager />
+              </TabsContent>
+
+              <TabsContent value="debug">
+                <div className="space-y-4">
+                  <h2 className="text-xl font-bold">
+                    Database Setup & Diagnostics
+                  </h2>
+                  <p className="text-gray-600">
+                    This section helps you set up and diagnose issues with the
+                    site settings database. Use the buttons below to create the
+                    necessary tables and seed initial data.
+                  </p>
+                  <DatabaseDebugger />
+                </div>
               </TabsContent>
             </div>
           </Tabs>

@@ -1,20 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import WhatsAppButton from "./WhatsAppButton";
+import { useSiteSettings } from "@/contexts/useSiteSettings";
 
 const Hero: React.FC = () => {
+  const { settings } = useSiteSettings();
+  const heroImage = settings.hero_image_url || "/images/hero.jpg";
+
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div
         className="absolute inset-0 w-full h-full bg-center bg-cover bg-no-repeat bg-fixed z-0"
-        style={{ backgroundImage: 'url("/images/hero.jpg")' }}
+        style={{ backgroundImage: `url("${heroImage}")` }}
       />
       <div className="absolute inset-0 bg-[#0a0a0a]/80 z-10" />
 
       <div className="container mx-auto px-6 relative z-20">
         <div className="flex flex-col items-center justify-center">
           <h1 className="text-6xl md:text-8xl font-bold text-bubbles-pink mb-12 text-center animate-pulse drop-shadow-[0_0_15px_rgba(255,107,157,0.4)]">
-            Bubbles
+            {settings.restaurant_name || "Bubbles"}
           </h1>
 
           <WhatsAppButton

@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSiteSettings } from "@/contexts/useSiteSettings";
 
 const Footer: React.FC = () => {
+  const { settings } = useSiteSettings();
   return (
     <footer className="relative overflow-hidden bg-gradient-to-b from-black to-gray-800 text-white py-12">
       <div className="container mx-auto px-6">
@@ -15,7 +17,8 @@ const Footer: React.FC = () => {
               />
             </Link>
             <p className="text-gray-400 text-sm text-center md:text-left">
-              Bringing you the best taste of Nigeria
+              {settings.restaurant_slogan ||
+                "Bringing you the best taste of Nigeria"}
             </p>
           </div>
 
@@ -52,10 +55,18 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
             <address className="not-italic">
-              <p className="mb-2">123 Bubble Street</p>
-              <p className="mb-2">Foodie City, FC 12345</p>
-              <p className="mb-2">Phone: (123) 456-7890</p>
-              <p>Email: hello@bubblesrestaurant.com</p>
+              <p className="mb-2">
+                {settings.address_line1 || "123 Bubble Street"}
+              </p>
+              <p className="mb-2">
+                {settings.address_line2 || "Foodie City, FC 12345"}
+              </p>
+              <p className="mb-2">
+                Phone: {settings.contact_phone || "(123) 456-7890"}
+              </p>
+              <p>
+                Email: {settings.contact_email || "hello@bubblesrestaurant.com"}
+              </p>
             </address>
           </div>
         </div>

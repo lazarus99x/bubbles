@@ -7,42 +7,30 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useAuth } from "@/contexts/AuthContext";
-import { LayoutDashboard, Utensils, Users, Tag, Image } from "lucide-react";
+import {
+  LayoutDashboard,
+  Utensils,
+  Users,
+  Tag,
+  Image,
+  Settings,
+  Phone,
+} from "lucide-react";
 import HeroImageManager from "./HeroImageManager";
+import SiteSettingsManager from "./SiteSettingsManager";
 import { Button } from "@/components/ui/button";
+import { useSiteSettings } from "@/contexts/useSiteSettings";
 
 const Dashboard: React.FC = () => {
   const { user } = useAuth();
+  const { settings } = useSiteSettings();
   const [showHeroManager, setShowHeroManager] = useState(false);
+  const [showSiteSettings, setShowSiteSettings] = useState(false);
   const [activeTab, setActiveTab] = useState<string>("dashboard");
-  const [heroImageUrl, setHeroImageUrl] = useState(
-    "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
-  );
-  const [pizzaVisible, setPizzaVisible] = useState(true);
 
-  // Load the hero image URL and pizza visibility from localStorage on component mount
-  useEffect(() => {
-    const savedImage = localStorage.getItem("heroBackgroundImage");
-    if (savedImage) {
-      setHeroImageUrl(savedImage);
-    }
-
-    const pizzaVisibility = localStorage.getItem("heroPizzaVisible");
-    if (pizzaVisibility !== null) {
-      setPizzaVisible(pizzaVisibility === "true");
-    }
-  }, []);
-
-  const handleUpdateHeroImage = (newUrl: string) => {
-    setHeroImageUrl(newUrl);
-    // Save to localStorage so it persists
-    localStorage.setItem("heroBackgroundImage", newUrl);
-  };
-
-  const handleTogglePizza = (visible: boolean) => {
-    setPizzaVisible(visible);
-    // Save to localStorage so it persists
-    localStorage.setItem("heroPizzaVisible", visible.toString());
+  const handleBack = () => {
+    setShowHeroManager(false);
+    setShowSiteSettings(false);
   };
 
   return (
@@ -56,17 +44,15 @@ const Dashboard: React.FC = () => {
 
       {showHeroManager ? (
         <div className="bg-white p-6 rounded-lg shadow-sm">
-          <HeroImageManager
-            currentImageUrl={heroImageUrl}
-            onUpdateImage={handleUpdateHeroImage}
-            pizzaVisible={pizzaVisible}
-            onTogglePizza={handleTogglePizza}
-          />
-          <Button
-            variant="outline"
-            className="mt-4"
-            onClick={() => setShowHeroManager(false)}
-          >
+          <HeroImageManager />
+          <Button variant="outline" className="mt-4" onClick={handleBack}>
+            Back to Dashboard
+          </Button>
+        </div>
+      ) : showSiteSettings ? (
+        <div className="bg-white p-6 rounded-lg shadow-sm">
+          <SiteSettingsManager />
+          <Button variant="outline" className="mt-4" onClick={handleBack}>
             Back to Dashboard
           </Button>
         </div>
@@ -136,6 +122,23 @@ const Dashboard: React.FC = () => {
             <CardContent>
               <CardDescription className="text-gray-600">
                 Update landing page appearance
+              </CardDescription>
+            </CardContent>
+          </Card>
+
+          <Card
+            className="hover:shadow-lg transition-shadow cursor-pointer bg-white border border-gray-200"
+            onClick={() => setShowSiteSettings(true)}
+          >
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-lg font-medium text-gray-900">
+                Contact & Address
+              </CardTitle>
+              <Phone className="h-5 w-5 text-pink-500" />
+            </CardHeader>
+            <CardContent>
+              <CardDescription className="text-gray-600">
+                Manage contact information and address
               </CardDescription>
             </CardContent>
           </Card>
