@@ -32,8 +32,6 @@ The admin panel now includes comprehensive site management features that allow y
 
 All site settings are stored in a Supabase database table and loaded dynamically when the website starts. The site uses a context provider pattern to make these settings available throughout the application.
 
-> **Important:** Before using the site settings features, make sure the database has been properly set up. See the [DATABASE_SETUP.md](./DATABASE_SETUP.md) file for instructions on how to create and initialize the site_settings table.
-
 ### Database Structure
 
 ```sql
