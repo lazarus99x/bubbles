@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/contexts/AuthContext";
 import DishManager from "@/components/admin/DishManager";
 import CategoryManager from "@/components/admin/CategoryManager";
 import MessageManager from "@/components/admin/MessageManager";
@@ -14,6 +15,7 @@ import SiteSettingsManager from "@/components/admin/SiteSettingsManager";
 const Admin: React.FC = () => {
   const [categories, setCategories] = useState<string[]>([]);
   const [activeTab, setActiveTab] = useState<string>("dashboard");
+  const { user, isAdmin } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -143,7 +145,42 @@ const Admin: React.FC = () => {
     }
   };
 
-  // Remove all authentication checks - make admin panel completely public
+  if (!user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-xl font-bold">Admin Login Required</h2>
+          <p className="mt-2">
+            Please log in with your admin credentials to access the admin panel.
+          </p>
+          <button
+            onClick={() => navigate("/admin-login")}
+            className="mt-4 px-4 py-2 bg-bubbles-pink text-white rounded-md hover:shadow-[0_0_15px_#FF6B9D] transition-all duration-300"
+          >
+            Admin Login
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAdmin) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-xl font-bold">Access Restricted</h2>
+          <p className="mt-2">You need admin privileges to access this page.</p>
+          <button
+            onClick={() => navigate("/")}
+            className="mt-4 px-4 py-2 bg-bubbles-pink text-white rounded-md hover:shadow-[0_0_15px_#FF6B9D] transition-all duration-300"
+          >
+            Go Home
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen pt-16">
       <Navbar />
