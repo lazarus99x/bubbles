@@ -28,8 +28,8 @@ const ProfileIcon: React.FC = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="p-2 rounded-full hover:bg-white/20 transition-colors">
-          <User size={24} className="text-white" />
+        <button className="p-2 rounded-full hover:bg-white/20 transition-colors bg-transparent">
+          <User size={24} className="text-white hover:text-pink-300" />
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">

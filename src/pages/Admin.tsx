@@ -5,7 +5,6 @@ import Footer from "../components/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { useAuth } from "@/contexts/AuthContext";
 import DishManager from "@/components/admin/DishManager";
 import CategoryManager from "@/components/admin/CategoryManager";
 import MessageManager from "@/components/admin/MessageManager";
@@ -15,7 +14,6 @@ import SiteSettingsManager from "@/components/admin/SiteSettingsManager";
 const Admin: React.FC = () => {
   const [categories, setCategories] = useState<string[]>([]);
   const [activeTab, setActiveTab] = useState<string>("dashboard");
-  const { user, isAdmin } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
