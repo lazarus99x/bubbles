@@ -135,14 +135,19 @@ const AdminLogin: React.FC = () => {
                 {loading ? "Loading..." : "Admin Login"}
               </button>
 
-              <button 
-                onClick={handleSignUp}
-                type="button"
-                className="btn-outline w-full transition-all duration-300 hover:shadow-[0_0_10px_#FF6B9D]"
-                disabled={loading}
-              >
-                Create Admin Account
-              </button>
+              <div className="text-center">
+                <p className="text-sm text-gray-600 mb-4">
+                  Don't have an admin account?
+                </p>
+                <button 
+                  onClick={() => navigate("/admin-signup")}
+                  type="button"
+                  className="btn-outline w-full transition-all duration-300 hover:shadow-[0_0_10px_#FF6B9D]"
+                  disabled={loading}
+                >
+                  Become Admin
+                </button>
+              </div>
             </form>
           </div>
         </div>

@@ -8,8 +8,10 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { SiteSettingsProvider } from "./contexts/SiteSettingsProvider";
 import Index from "./pages/Index";
 import Menu from "./pages/Menu";
+import Order from "./pages/Order";
 import Login from "./pages/Login";
 import AdminLogin from "./pages/AdminLogin";
+import AdminSignup from "./pages/AdminSignup";
 import CustomerLogin from "./pages/CustomerLogin";
 import Profile from "./pages/Profile";
 import Admin from "./pages/Admin";
@@ -39,9 +41,11 @@ const App = () => {
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/menu" element={<Menu />} />
+                <Route path="/order" element={<Order />} />
                 <Route path="/our-story" element={<OurStory />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/admin-login" element={<AdminLogin />} />
+                <Route path="/admin-signup" element={<AdminSignup />} />
                 <Route path="/customer-login" element={<CustomerLogin />} />
                 <Route
                   path="/profile"

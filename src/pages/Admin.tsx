@@ -8,10 +8,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import DishManager from "@/components/admin/DishManager";
 import CategoryManager from "@/components/admin/CategoryManager";
-import UserManager from "@/components/admin/UserManager";
 import MessageManager from "@/components/admin/MessageManager";
 import Dashboard from "@/components/admin/Dashboard";
-import AdminAccessManager from "@/components/admin/AdminAccessManager";
 
 const Admin: React.FC = () => {
   const [categories, setCategories] = useState<string[]>([]);
@@ -57,8 +55,9 @@ const Admin: React.FC = () => {
         new Set(data.map((item) => item.category))
       );
       setCategories(uniqueCategories as string[]);
-    } catch (error: any) {
-      toast.error("Error fetching categories: " + error.message);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
+      toast.error("Error fetching categories: " + errorMessage);
     }
   };
 
@@ -95,8 +94,9 @@ const Admin: React.FC = () => {
 
       toast.success(`Category "${newCategory}" added successfully`);
       await fetchCategories();
-    } catch (error: any) {
-      toast.error("Error adding category: " + error.message);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
+      toast.error("Error adding category: " + errorMessage);
     }
   };
 
@@ -135,8 +135,9 @@ const Admin: React.FC = () => {
         `Category "${category}" and its dishes removed successfully`
       );
       await fetchCategories();
-    } catch (error: any) {
-      toast.error("Error removing category: " + error.message);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
+      toast.error("Error removing category: " + errorMessage);
     }
   };
 
@@ -191,12 +192,10 @@ const Admin: React.FC = () => {
             onValueChange={setActiveTab}
             className="w-full"
           >
-            <TabsList className="mb-8 overflow-x-auto grid grid-cols-6">
+            <TabsList className="mb-8 overflow-x-auto grid grid-cols-4">
               <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
               <TabsTrigger value="menu">Menu Management</TabsTrigger>
               <TabsTrigger value="categories">Categories</TabsTrigger>
-              <TabsTrigger value="users">Users</TabsTrigger>
-              <TabsTrigger value="admin-access">Admin Access</TabsTrigger>
               <TabsTrigger value="messages">Messages</TabsTrigger>
             </TabsList>
 
@@ -215,14 +214,6 @@ const Admin: React.FC = () => {
                   onAddCategory={handleAddCategory}
                   onRemoveCategory={handleRemoveCategory}
                 />
-              </TabsContent>
-
-              <TabsContent value="users">
-                <UserManager />
-              </TabsContent>
-
-              <TabsContent value="admin-access">
-                <AdminAccessManager />
               </TabsContent>
 
               <TabsContent value="messages">

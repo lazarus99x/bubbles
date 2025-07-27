@@ -25,28 +25,16 @@ const Navbar: React.FC = () => {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-12">
           <Link
-            to="/menu/parfaits"
+            to="/menu"
             className="text-white hover:text-pink-500 transition-colors font-medium"
           >
-            Parfaits
+            Menu
           </Link>
           <Link
-            to="/menu/drinks"
+            to="/our-story"
             className="text-white hover:text-pink-500 transition-colors font-medium"
           >
-            Drinks
-          </Link>
-          <Link
-            to="/menu/foods"
-            className="text-white hover:text-pink-500 transition-colors font-medium"
-          >
-            Foods
-          </Link>
-          <Link
-            to="/menu/cakes"
-            className="text-white hover:text-pink-500 transition-colors font-medium"
-          >
-            Cakes
+            Our Story
           </Link>
 
           <Link
@@ -77,32 +65,18 @@ const Navbar: React.FC = () => {
         <div className="md:hidden bg-black/95 absolute top-16 left-0 right-0 p-4">
           <div className="flex flex-col space-y-4">
             <Link
-              to="/menu/parfaits"
+              to="/menu"
               className="text-white hover:text-pink-500 transition-colors"
               onClick={toggleMenu}
             >
-              Parfaits
+              Menu
             </Link>
             <Link
-              to="/menu/drinks"
+              to="/our-story"
               className="text-white hover:text-pink-500 transition-colors"
               onClick={toggleMenu}
             >
-              Drinks
-            </Link>
-            <Link
-              to="/menu/foods"
-              className="text-white hover:text-pink-500 transition-colors"
-              onClick={toggleMenu}
-            >
-              Foods
-            </Link>
-            <Link
-              to="/menu/cakes"
-              className="text-white hover:text-pink-500 transition-colors"
-              onClick={toggleMenu}
-            >
-              Cakes
+              Our Story
             </Link>
           </div>
         </div>
