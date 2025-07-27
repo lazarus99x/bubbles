@@ -1,8 +1,7 @@
-
-import React, { useState } from 'react';
-import { User } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '@/contexts/AuthContext';
+import React, { useState } from "react";
+import { User } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,16 +14,16 @@ import {
 const ProfileIcon: React.FC = () => {
   const { user, isAdmin, signOut } = useAuth();
   const navigate = useNavigate();
-  
+
   const handleLogout = async () => {
     await signOut();
     navigate("/");
   };
-  
+
   const goToProfile = () => navigate("/profile");
   const goToAdmin = () => navigate("/admin");
   const goToLogin = () => navigate("/login");
-  
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -36,23 +35,17 @@ const ProfileIcon: React.FC = () => {
         {user ? (
           <>
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuItem onClick={goToProfile}>
-              Profile
-            </DropdownMenuItem>
+            <DropdownMenuItem onClick={goToProfile}>Profile</DropdownMenuItem>
             {isAdmin && (
               <DropdownMenuItem onClick={goToAdmin}>
                 Admin Dashboard
               </DropdownMenuItem>
             )}
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleLogout}>
-              Logout
-            </DropdownMenuItem>
+            <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
           </>
         ) : (
-          <DropdownMenuItem onClick={goToLogin}>
-            Login
-          </DropdownMenuItem>
+          <DropdownMenuItem onClick={goToLogin}>Login</DropdownMenuItem>
         )}
       </DropdownMenuContent>
     </DropdownMenu>

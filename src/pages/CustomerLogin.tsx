@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
@@ -54,9 +53,9 @@ const CustomerLogin: React.FC = () => {
         password,
         options: {
           data: {
-            role: 'customer' // Always create as customer from this page
-          }
-        }
+            role: "customer", // Always create as customer from this page
+          },
+        },
       });
 
       if (error) throw error;
@@ -67,12 +66,14 @@ const CustomerLogin: React.FC = () => {
           email,
           password,
         });
-        
+
         if (!signInError) {
           toast.success("Account created and logged in!");
           navigate("/");
         } else {
-          toast.info("Account created! Please check your email for verification.");
+          toast.info(
+            "Account created! Please check your email for verification."
+          );
         }
       }
     } catch (error: any) {
@@ -85,12 +86,14 @@ const CustomerLogin: React.FC = () => {
   return (
     <div className="min-h-screen pt-16">
       <Navbar />
-      
+
       <div className="section-padding">
         <div className="container mx-auto px-4">
           <div className="max-w-md mx-auto glass p-8 rounded-lg shadow-lg">
-            <h1 className="text-3xl font-bold text-bubbles-pink mb-6">Customer Login</h1>
-            
+            <h1 className="text-3xl font-bold text-bubbles-pink mb-6">
+              Customer Login
+            </h1>
+
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label htmlFor="email" className="block text-gray-700 mb-2">
@@ -105,7 +108,7 @@ const CustomerLogin: React.FC = () => {
                   required
                 />
               </div>
-              
+
               <div className="mb-6">
                 <label htmlFor="password" className="block text-gray-700 mb-2">
                   Password
@@ -119,16 +122,16 @@ const CustomerLogin: React.FC = () => {
                   required
                 />
               </div>
-              
-              <button 
-                type="submit" 
+
+              <button
+                type="submit"
                 className="btn-primary w-full mb-4"
                 disabled={loading}
               >
                 {loading ? "Loading..." : "Login"}
               </button>
 
-              <button 
+              <button
                 onClick={handleSignUp}
                 type="button"
                 className="btn-outline w-full"
@@ -140,7 +143,7 @@ const CustomerLogin: React.FC = () => {
           </div>
         </div>
       </div>
-      
+
       <Footer />
     </div>
   );
