@@ -110,7 +110,7 @@ const AdminSignup: React.FC = () => {
                       id="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="admin@example.com"
+                      placeholder="contact@bubblesrestaurant.pro"
                       required
                     />
                   </div>

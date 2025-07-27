@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
             </Link>
             <p className="text-gray-400 text-sm text-center md:text-left">
               {settings.restaurant_slogan ||
-                "Bringing you the best taste of Nigeria"}
+                "Authentic Nigerian cuisine on Old Ughelli/Warri Road"}
             </p>
           </div>
 
@@ -56,16 +56,16 @@ const Footer: React.FC = () => {
             <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
             <address className="not-italic">
               <p className="mb-2">
-                {settings.address_line1 || "123 Bubble Street"}
+                {settings.address_line1 || "Old Ughelli/Warri Road, opposite former Ecoban"}
               </p>
               <p className="mb-2">
-                {settings.address_line2 || "Foodie City, FC 12345"}
+                {settings.address_line2 || "Agbarho, Delta State"}
               </p>
               <p className="mb-2">
-                Phone: {settings.contact_phone || "(123) 456-7890"}
+                Phone: {settings.contact_phone || "+2347088081689"}
               </p>
               <p>
-                Email: {settings.contact_email || "hello@bubblesrestaurant.com"}
+                Email: {settings.contact_email || "contact@bubblesrestaurant.pro"}
               </p>
             </address>
           </div>

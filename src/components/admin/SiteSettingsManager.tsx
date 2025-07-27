@@ -191,7 +191,7 @@ const SiteSettingsManager: React.FC = () => {
                   type="email"
                   value={contactEmail}
                   onChange={(e) => setContactEmail(e.target.value)}
-                  placeholder="contact@yourrestaurant.com"
+                  placeholder="contact@bubblesrestaurant.pro"
                   className="bg-white dark:bg-gray-800 text-black dark:text-white"
                 />
               </div>
@@ -204,7 +204,7 @@ const SiteSettingsManager: React.FC = () => {
                   id="whatsapp-number"
                   value={whatsappNumber}
                   onChange={(e) => setWhatsappNumber(e.target.value)}
-                  placeholder="+2347012345678"
+                  placeholder="+2347088081689"
                   className="bg-white dark:bg-gray-800 text-black dark:text-white"
                 />
                 <p className="text-sm text-gray-500 flex items-center gap-1">
@@ -250,7 +250,7 @@ const SiteSettingsManager: React.FC = () => {
                   id="address-line1"
                   value={addressLine1}
                   onChange={(e) => setAddressLine1(e.target.value)}
-                  placeholder="123 Restaurant Street"
+                  placeholder="Old Ughelli/Warri Road, opposite former Ecoban"
                   className="bg-white dark:bg-gray-800 text-black dark:text-white"
                 />
               </div>
@@ -263,7 +263,7 @@ const SiteSettingsManager: React.FC = () => {
                   id="address-line2"
                   value={addressLine2}
                   onChange={(e) => setAddressLine2(e.target.value)}
-                  placeholder="Foodie City, FC 12345"
+                  placeholder="Agbarho, Delta State"
                   className="bg-white dark:bg-gray-800 text-black dark:text-white"
                 />
               </div>

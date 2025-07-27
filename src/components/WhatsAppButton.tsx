@@ -14,7 +14,7 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
   className = "",
 }) => {
   const { settings } = useSiteSettings();
-  const whatsappNumber = settings.whatsapp_number || "+2348123456789";
+  const whatsappNumber = settings.whatsapp_number || "+2347088081689";
 
   const handleClick = () => {
     const message = `Hi! I'd like to order ${dishName}.`;

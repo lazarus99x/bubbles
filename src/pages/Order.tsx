@@ -124,7 +124,7 @@ ${orderDetails}
 
 Please confirm availability and delivery fee. Thank you!`;
 
-    const whatsappNumber = settings?.whatsapp_number || "2348000000000";
+    const whatsappNumber = settings?.whatsapp_number || "2347088081689";
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
     window.open(whatsappUrl, "_blank");
