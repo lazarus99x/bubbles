@@ -4,7 +4,13 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -17,7 +23,7 @@ const AdminSignup: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
       return;
@@ -37,9 +43,9 @@ const AdminSignup: React.FC = () => {
         password,
         options: {
           data: {
-            role: 'admin' // Always create as admin from this page
-          }
-        }
+            role: "admin", // Always create as admin from this page
+          },
+        },
       });
 
       if (error) throw error;
@@ -50,17 +56,24 @@ const AdminSignup: React.FC = () => {
           email,
           password,
         });
-        
+
         if (signInError) throw signInError;
-        
-        toast.success("Admin account created successfully! You now have full access.");
+
+        toast.success(
+          "Admin account created successfully! You now have full access."
+        );
         navigate("/admin");
       } else {
-        toast.info("Account created! Please check your email for verification, then login.");
+        toast.info(
+          "Account created! Please check your email for verification, then login."
+        );
         navigate("/admin-login");
       }
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : "Failed to create admin account";
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : "Failed to create admin account";
       toast.error(errorMessage);
     } finally {
       setLoading(false);
@@ -70,7 +83,7 @@ const AdminSignup: React.FC = () => {
   return (
     <div className="min-h-screen pt-16">
       <Navbar />
-      
+
       <div className="section-padding">
         <div className="container mx-auto px-4">
           <div className="max-w-md mx-auto">
@@ -86,7 +99,10 @@ const AdminSignup: React.FC = () => {
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium mb-2"
+                    >
                       Email Address
                     </label>
                     <Input
@@ -98,9 +114,12 @@ const AdminSignup: React.FC = () => {
                       required
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="password" className="block text-sm font-medium mb-2">
+                    <label
+                      htmlFor="password"
+                      className="block text-sm font-medium mb-2"
+                    >
                       Password
                     </label>
                     <Input
@@ -112,9 +131,12 @@ const AdminSignup: React.FC = () => {
                       required
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="confirmPassword" className="block text-sm font-medium mb-2">
+                    <label
+                      htmlFor="confirmPassword"
+                      className="block text-sm font-medium mb-2"
+                    >
                       Confirm Password
                     </label>
                     <Input
@@ -127,8 +149,8 @@ const AdminSignup: React.FC = () => {
                     />
                   </div>
 
-                  <Button 
-                    type="submit" 
+                  <Button
+                    type="submit"
                     className="w-full bg-bubbles-pink hover:bg-bubbles-pink/80"
                     disabled={loading}
                     size="lg"
@@ -138,7 +160,9 @@ const AdminSignup: React.FC = () => {
                 </form>
 
                 <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                  <h4 className="font-semibold text-blue-800 mb-2">What you'll get:</h4>
+                  <h4 className="font-semibold text-blue-800 mb-2">
+                    What you'll get:
+                  </h4>
                   <ul className="text-sm text-blue-700 space-y-1">
                     <li>• Full access to admin dashboard</li>
                     <li>• Menu management capabilities</li>

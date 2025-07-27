@@ -10,6 +10,7 @@ import DishManager from "@/components/admin/DishManager";
 import CategoryManager from "@/components/admin/CategoryManager";
 import MessageManager from "@/components/admin/MessageManager";
 import Dashboard from "@/components/admin/Dashboard";
+import SiteSettingsManager from "@/components/admin/SiteSettingsManager";
 
 const Admin: React.FC = () => {
   const [categories, setCategories] = useState<string[]>([]);
@@ -56,7 +57,8 @@ const Admin: React.FC = () => {
       );
       setCategories(uniqueCategories as string[]);
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
+      const errorMessage =
+        error instanceof Error ? error.message : "Unknown error occurred";
       toast.error("Error fetching categories: " + errorMessage);
     }
   };
@@ -95,7 +97,8 @@ const Admin: React.FC = () => {
       toast.success(`Category "${newCategory}" added successfully`);
       await fetchCategories();
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
+      const errorMessage =
+        error instanceof Error ? error.message : "Unknown error occurred";
       toast.error("Error adding category: " + errorMessage);
     }
   };
@@ -136,47 +139,13 @@ const Admin: React.FC = () => {
       );
       await fetchCategories();
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
+      const errorMessage =
+        error instanceof Error ? error.message : "Unknown error occurred";
       toast.error("Error removing category: " + errorMessage);
     }
   };
 
-  if (!user) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-xl font-bold">Admin Login Required</h2>
-          <p className="mt-2">
-            Please log in with your admin credentials to access the admin panel.
-          </p>
-          <button
-            onClick={() => navigate("/admin-login")}
-            className="mt-4 px-4 py-2 bg-bubbles-pink text-white rounded-md hover:shadow-[0_0_15px_#FF6B9D] transition-all duration-300"
-          >
-            Admin Login
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  if (!isAdmin) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-xl font-bold">Access Restricted</h2>
-          <p className="mt-2">You need admin privileges to access this page.</p>
-          <button
-            onClick={() => navigate("/")}
-            className="mt-4 px-4 py-2 bg-bubbles-pink text-white rounded-md hover:shadow-[0_0_15px_#FF6B9D] transition-all duration-300"
-          >
-            Go Home
-          </button>
-        </div>
-      </div>
-    );
-  }
-
+  // Remove all authentication checks - make admin panel completely public
   return (
     <div className="min-h-screen pt-16">
       <Navbar />
@@ -192,10 +161,11 @@ const Admin: React.FC = () => {
             onValueChange={setActiveTab}
             className="w-full"
           >
-            <TabsList className="mb-8 overflow-x-auto grid grid-cols-4">
+            <TabsList className="mb-8 overflow-x-auto grid grid-cols-5">
               <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
               <TabsTrigger value="menu">Menu Management</TabsTrigger>
               <TabsTrigger value="categories">Categories</TabsTrigger>
+              <TabsTrigger value="settings">Site Settings</TabsTrigger>
               <TabsTrigger value="messages">Messages</TabsTrigger>
             </TabsList>
 
@@ -214,6 +184,10 @@ const Admin: React.FC = () => {
                   onAddCategory={handleAddCategory}
                   onRemoveCategory={handleRemoveCategory}
                 />
+              </TabsContent>
+
+              <TabsContent value="settings">
+                <SiteSettingsManager />
               </TabsContent>
 
               <TabsContent value="messages">
