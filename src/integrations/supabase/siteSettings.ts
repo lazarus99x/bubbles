@@ -58,63 +58,39 @@ export const updateSiteSetting = async (
   try {
     console.log(`🔄 Updating site setting: ${key} with value: ${value}`);
 
-    // First check if the setting exists
-    const { data, error: checkError } = await supabase
-      .from("site_settings")
-      .select("id")
-      .eq("setting_key", key)
-      .maybeSingle();
-
-    if (checkError) {
-      console.error("❌ Error checking if setting exists:", checkError);
-    }
-
-    console.log(`📋 Setting ${key} exists:`, !!data?.id, "ID:", data?.id);
-
-    // If the setting exists, update it
-    if (data?.id) {
-      console.log(`🔄 Updating existing setting: ${key}`);
-      const result = await supabase
-        .from("site_settings")
-        .update({ setting_value: value })
-        .eq("setting_key", key);
-
-      console.log(`📋 Update operation result:`, result);
-
-      if (result.error) {
-        console.error(`❌ Error updating setting ${key}:`, result.error);
-        throw result.error;
-      }
-      console.log(`✅ Successfully updated setting: ${key}`);
-    } else {
-      // If the setting doesn't exist, insert it
-      console.log(`➕ Inserting new setting: ${key}`);
-      const settingType = key.includes("_url")
-        ? "image"
-        : key.includes("email")
-          ? "email"
-          : key.includes("phone") || key.includes("number")
-            ? "phone"
+    // Determine the setting type based on the key
+    const settingType = key.includes("_url") || key.includes("image")
+      ? "image"
+      : key.includes("email")
+        ? "email"
+        : key.includes("phone") || key.includes("number") || key.includes("whatsapp")
+          ? "phone"
+          : key.includes("show_") || key.includes("enable_") || key.includes("_enabled")
+            ? "boolean"
             : "text";
 
-      console.log(`📋 Setting type determined: ${settingType}`);
-
-      const result = await supabase.from("site_settings").insert([
+    // Use upsert (insert or update) to handle both new and existing settings
+    const { data, error } = await supabase
+      .from("site_settings")
+      .upsert(
         {
           setting_key: key,
           setting_value: value,
           setting_type: settingType,
         },
-      ]);
+        {
+          onConflict: "setting_key",
+          ignoreDuplicates: false
+        }
+      )
+      .select();
 
-      console.log(`📋 Insert operation result:`, result);
-
-      if (result.error) {
-        console.error(`❌ Error inserting setting ${key}:`, result.error);
-        throw result.error;
-      }
-      console.log(`✅ Successfully inserted setting: ${key}`);
+    if (error) {
+      console.error(`❌ Error upserting setting ${key}:`, error);
+      throw error;
     }
+
+    console.log(`✅ Successfully updated setting: ${key}`, data);
   } catch (error) {
     console.error(`❌ Error updating site setting ${key}:`, error);
     throw error;
