@@ -28,31 +28,22 @@ CREATE POLICY "Anyone can insert messages" ON public.messages
 -- Only authenticated admin users can view messages
 CREATE POLICY "Admin users can view messages" ON public.messages
     FOR SELECT USING (
-        EXISTS (
-            SELECT 1 FROM auth.users 
-            WHERE auth.users.id = auth.uid() 
-            AND auth.users.raw_user_meta_data->>'role' = 'admin'
-        )
+        auth.uid() IS NOT NULL 
+        AND auth.jwt() ->> 'user_metadata' ->> 'role' = 'admin'
     );
 
 -- Only authenticated admin users can update messages
 CREATE POLICY "Admin users can update messages" ON public.messages
     FOR UPDATE USING (
-        EXISTS (
-            SELECT 1 FROM auth.users 
-            WHERE auth.users.id = auth.uid() 
-            AND auth.users.raw_user_meta_data->>'role' = 'admin'
-        )
+        auth.uid() IS NOT NULL 
+        AND auth.jwt() ->> 'user_metadata' ->> 'role' = 'admin'
     );
 
 -- Only authenticated admin users can delete messages
 CREATE POLICY "Admin users can delete messages" ON public.messages
     FOR DELETE USING (
-        EXISTS (
-            SELECT 1 FROM auth.users 
-            WHERE auth.users.id = auth.uid() 
-            AND auth.users.raw_user_meta_data->>'role' = 'admin'
-        )
+        auth.uid() IS NOT NULL 
+        AND auth.jwt() ->> 'user_metadata' ->> 'role' = 'admin'
     );
 
 -- Create function to update updated_at timestamp
