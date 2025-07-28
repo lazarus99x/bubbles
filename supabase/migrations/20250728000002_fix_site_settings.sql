@@ -1,11 +1,7 @@
--- Fix site_settings table and policies for proper functionality
+-- Create site_settings table and policies for proper functionality
 -- This ensures site settings can be read by everyone and updated by admins
 
--- Drop existing policies that may be problematic
-DROP POLICY IF EXISTS "Admins can do everything with site settings" ON public.site_settings;
-DROP POLICY IF EXISTS "Anyone can view site settings" ON public.site_settings;
-
--- Ensure the table exists with proper structure
+-- Create the site_settings table first
 CREATE TABLE IF NOT EXISTS public.site_settings (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     setting_key TEXT UNIQUE NOT NULL,
@@ -17,6 +13,13 @@ CREATE TABLE IF NOT EXISTS public.site_settings (
 
 -- Enable RLS
 ALTER TABLE public.site_settings ENABLE ROW LEVEL SECURITY;
+
+-- Drop existing policies if they exist (only after table exists)
+DROP POLICY IF EXISTS "Admins can do everything with site settings" ON public.site_settings;
+DROP POLICY IF EXISTS "Anyone can view site settings" ON public.site_settings;
+DROP POLICY IF EXISTS "Admin users can insert site settings" ON public.site_settings;
+DROP POLICY IF EXISTS "Admin users can update site settings" ON public.site_settings;
+DROP POLICY IF EXISTS "Admin users can delete site settings" ON public.site_settings;
 
 -- Allow everyone (including anonymous users) to read site settings
 CREATE POLICY "Anyone can view site settings" ON public.site_settings

@@ -59,15 +59,20 @@ export const updateSiteSetting = async (
     console.log(`🔄 Updating site setting: ${key} with value: ${value}`);
 
     // Determine the setting type based on the key
-    const settingType = key.includes("_url") || key.includes("image")
-      ? "image"
-      : key.includes("email")
-        ? "email"
-        : key.includes("phone") || key.includes("number") || key.includes("whatsapp")
-          ? "phone"
-          : key.includes("show_") || key.includes("enable_") || key.includes("_enabled")
-            ? "boolean"
-            : "text";
+    const settingType =
+      key.includes("_url") || key.includes("image")
+        ? "image"
+        : key.includes("email")
+          ? "email"
+          : key.includes("phone") ||
+              key.includes("number") ||
+              key.includes("whatsapp")
+            ? "phone"
+            : key.includes("show_") ||
+                key.includes("enable_") ||
+                key.includes("_enabled")
+              ? "boolean"
+              : "text";
 
     // Use upsert (insert or update) to handle both new and existing settings
     const { data, error } = await supabase
@@ -80,7 +85,7 @@ export const updateSiteSetting = async (
         },
         {
           onConflict: "setting_key",
-          ignoreDuplicates: false
+          ignoreDuplicates: false,
         }
       )
       .select();
