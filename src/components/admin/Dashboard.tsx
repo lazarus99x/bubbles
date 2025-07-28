@@ -15,9 +15,11 @@ import {
   Image,
   Settings,
   Phone,
+  Key,
 } from "lucide-react";
 import HeroImageManager from "./HeroImageManager";
 import SiteSettingsManager from "./SiteSettingsManager";
+import PasswordReset from "./PasswordReset";
 import { Button } from "@/components/ui/button";
 import { useSiteSettings } from "@/contexts/useSiteSettings";
 
@@ -26,11 +28,13 @@ const Dashboard: React.FC = () => {
   const { settings } = useSiteSettings();
   const [showHeroManager, setShowHeroManager] = useState(false);
   const [showSiteSettings, setShowSiteSettings] = useState(false);
+  const [showPasswordReset, setShowPasswordReset] = useState(false);
   const [activeTab, setActiveTab] = useState<string>("dashboard");
 
   const handleBack = () => {
     setShowHeroManager(false);
     setShowSiteSettings(false);
+    setShowPasswordReset(false);
   };
 
   return (
@@ -52,6 +56,13 @@ const Dashboard: React.FC = () => {
       ) : showSiteSettings ? (
         <div className="bg-white p-6 rounded-lg shadow-sm">
           <SiteSettingsManager />
+          <Button variant="outline" className="mt-4" onClick={handleBack}>
+            Back to Dashboard
+          </Button>
+        </div>
+      ) : showPasswordReset ? (
+        <div className="bg-white p-6 rounded-lg shadow-sm">
+          <PasswordReset />
           <Button variant="outline" className="mt-4" onClick={handleBack}>
             Back to Dashboard
           </Button>
@@ -139,6 +150,23 @@ const Dashboard: React.FC = () => {
             <CardContent>
               <CardDescription className="text-gray-600">
                 Manage contact information and address
+              </CardDescription>
+            </CardContent>
+          </Card>
+
+          <Card
+            className="hover:shadow-lg transition-shadow cursor-pointer bg-white border border-gray-200"
+            onClick={() => setShowPasswordReset(true)}
+          >
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-lg font-medium text-gray-900">
+                Change Password
+              </CardTitle>
+              <Key className="h-5 w-5 text-pink-500" />
+            </CardHeader>
+            <CardContent>
+              <CardDescription className="text-gray-600">
+                Update your admin password
               </CardDescription>
             </CardContent>
           </Card>
