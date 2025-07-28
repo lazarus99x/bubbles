@@ -56,7 +56,8 @@ const Footer: React.FC = () => {
             <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
             <address className="not-italic">
               <p className="mb-2">
-                {settings.address_line1 || "Old Ughelli/Warri Road, opposite former Ecoban"}
+                {settings.address_line1 ||
+                  "Old Ughelli/Warri Road, opposite former Ecoban"}
               </p>
               <p className="mb-2">
                 {settings.address_line2 || "Agbarho, Delta State"}
@@ -65,7 +66,8 @@ const Footer: React.FC = () => {
                 Phone: {settings.contact_phone || "+2347088081689"}
               </p>
               <p>
-                Email: {settings.contact_email || "contact@bubblesrestaurant.pro"}
+                Email:{" "}
+                {settings.contact_email || "contact@bubblesrestaurant.pro"}
               </p>
             </address>
           </div>

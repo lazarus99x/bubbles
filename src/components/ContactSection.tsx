@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { useSiteSettings } from "@/contexts/useSiteSettings";
+import { submitMessage } from "@/integrations/supabase/messages";
 
 const ContactSection: React.FC = () => {
   const { settings } = useSiteSettings();
@@ -16,19 +17,39 @@ const ContactSection: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!name || !email || !message) {
+    if (!name.trim() || !email.trim() || !message.trim()) {
       toast.error("Please fill in all fields");
+      return;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Please enter a valid email address");
       return;
     }
 
     setLoading(true);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      toast.success("Your message has been sent successfully!");
-      setName("");
-      setEmail("");
-      setMessage("");
+      const result = await submitMessage({
+        name: name.trim(),
+        email: email.trim(),
+        message: message.trim(),
+      });
+
+      if (result.success) {
+        toast.success(
+          "Your message has been sent successfully! We'll get back to you soon."
+        );
+        setName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        toast.error(
+          "Error sending message: " + (result.error || "Unknown error")
+        );
+      }
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : "An unexpected error occurred";
